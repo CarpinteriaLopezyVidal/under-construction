@@ -86,10 +86,10 @@
                 ref_seconds = (seconds === 1) ? 'second' : 'seconds';
 
             // set to DOM
-            container.find('.days').text(days);
-            container.find('.hours').text(hours);
-            container.find('.minutes').text(minutes);
-            container.find('.seconds').text(seconds);
+            container.find('.días').text(days);
+            container.find('.horas').text(hours);
+            container.find('.minutos').text(minutes);
+            container.find('.segundos').text(seconds);
 
             container.find('.days_ref').text(ref_days);
             container.find('.hours_ref').text(ref_hours);
