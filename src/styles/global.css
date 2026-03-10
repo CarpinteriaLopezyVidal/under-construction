@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Color Palette derived from #067538 === */
+  --color-brand: #067538;
+  --color-brand-dark: #044d25;
+  --color-brand-light: #09a64f;
+  --color-accent: #f5a623;
+  --color-surface: #f4f8f5;
+  --color-surface-dark: #e8f2ec;
+  --color-neutral: #1a1a1a;
+  --color-neutral-light: #4a4a4a;
+  --color-whatsapp: #25D366;
+
+  /* === Fonts === */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+/* === Base Styles === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-neutral);
+  background-color: #fff;
+}
+
+/* === Section padding utility === */
+.section-pad {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* === Scrollbar styling === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand);
+  border-radius: 4px;
+}
