@@ -45,9 +45,8 @@ jobs:
           # Formspree endpoint (e.g., /f/xxxxxxxx)
           # Add this secret in: GitHub repo → Settings → Secrets → Actions
           PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.FORMSPREE_ENDPOINT }}
-          # hCaptcha public site key
-          # Add this secret in: GitHub repo → Settings → Secrets → Actions
-          PUBLIC_HCAPTCHA_SITE_KEY: ${{ secrets.HCAPTCHA_SITE_KEY }}
+          # hCaptcha public site key (safe to commit — browser-visible by design)
+          PUBLIC_HCAPTCHA_SITE_KEY: 6720ea36-6660-405a-81a8-0422083c7e32
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
