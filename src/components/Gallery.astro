@@ -1,0 +1,125 @@
+---
+import { getImage } from 'astro:assets';
+import { glob } from 'astro/loaders';
+
+// Statically list gallery images available in src/assets/gallery
+// Add more entries here as new images are added to the folder
+const galleryImages = [
+  { src: '/gallery/1.jpg', alt: 'Trabajo de carpintería artesanal en madera' },
+  { src: '/gallery/2.jpg', alt: 'Proyecto de carpintería personalizado' },
+  { src: '/gallery/3.jpg', alt: 'Acabados en madera de alta calidad' },
+  { src: '/gallery/4.jpg', alt: 'Instalación de carpintería a medida' },
+  { src: '/gallery/slide-one.jpg', alt: 'Carpintería artesanal López y Vidal' },
+  { src: '/gallery/slide-two.jpg', alt: 'Proyectos de madera exclusivos' },
+];
+---
+
+<section id="galeria" class="section-pad" style="background-color: #f4f8f5;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-12">
+      <span
+        class="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
+        style="color: #067538;"
+      >
+        Portfolio
+      </span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
+        Nuestros Trabajos
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Cada pieza cuenta una historia. Así es como transformamos la madera en arte funcional.
+      </p>
+      <div class="mt-5 w-16 h-1 mx-auto rounded-full" style="background-color: #f5a623;"></div>
+    </div>
+
+    <!-- Masonry gallery grid -->
+    <div class="gallery-grid">
+      {galleryImages.map((image, index) => (
+        <a
+          href={image.src}
+          class="gallery-item group block overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
+          data-glightbox={`gallery-${index}`}
+          data-title={image.alt}
+          aria-label={`Ver imagen: ${image.alt}`}
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <!-- Overlay on hover -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" style="background-color: rgba(6, 117, 56, 0.6);">
+              <div class="text-white text-center p-4">
+                <svg class="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+                </svg>
+                <p class="text-sm font-medium">{image.alt}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Add more images CTA -->
+    <div class="text-center mt-10">
+      <p class="text-gray-500 text-sm mb-4">
+        ¿Quieres ver más proyectos? Contáctanos para un portfolio completo.
+      </p>
+      <a
+        href="#contacto"
+        class="inline-flex items-center gap-2 border-2 font-semibold px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
+        style="border-color: #067538; color: #067538;"
+      >
+        Ver más trabajos
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GLightbox CSS + JS from CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // @ts-ignore
+    if (typeof GLightbox !== 'undefined') {
+      // @ts-ignore
+      const lightbox = GLightbox({
+        selector: '.gallery-item',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: false,
+      });
+    }
+  });
+</script>
+
+<style>
+  .gallery-grid {
+    columns: 1;
+    gap: 1rem;
+  }
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  @media (min-width: 640px) {
+    .gallery-grid { columns: 2; }
+  }
+  @media (min-width: 1024px) {
+    .gallery-grid { columns: 3; }
+  }
+</style>

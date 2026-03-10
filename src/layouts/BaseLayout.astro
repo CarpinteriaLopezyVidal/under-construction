@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Carpintería López y Vidal | Carpintería en Pinoso, Alicante',
+  description = 'Carpintería artesanal e industrial en Pinoso, Alicante. Trabajos en madera, CNC, cocinas a medida, proyectos personalizados y viviendas completas. Servicio en toda España y extranjero.',
+  ogImage = '/og-image.jpg',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.carpinterialopezyvidal.com",
+  "name": "Carpintería López y Vidal",
+  "description": description,
+  "url": "https://www.carpinterialopezyvidal.com",
+  "telephone": "+34649669311",
+  "email": "web@carpinterialopezyvidal.com",
+  "image": "https://www.carpinterialopezyvidal.com/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Pinoso",
+    "addressLocality": "Pinoso",
+    "addressRegion": "Alicante",
+    "postalCode": "03650",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.3987,
+    "longitude": -1.0339
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "España" },
+    { "@type": "AdministrativeArea", "name": "Europa" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Carpintería",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carpintería artesanal en madera" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trabajos de CNC en madera" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Proyectos personalizados" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cocinas a medida" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Viviendas completas en madera" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transporte e instalación" } }
+    ]
+  },
+  "sameAs": [
+    "https://maps.app.goo.gl/ehNcNENWVEACRM6v8"
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Carpintería López y Vidal" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="carpintería, madera, CNC, cocinas, muebles, Pinoso, Alicante, proyectos personalizados, viviendas" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`https://www.carpinterialopezyvidal.com${ogImage}`} />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Carpintería López y Vidal" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://www.carpinterialopezyvidal.com${ogImage}`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Google Fonts — preconnect then load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+  />
+
+  <!-- Global Styles are injected by Astro via the import above -->
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

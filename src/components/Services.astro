@@ -1,0 +1,86 @@
+---
+import { services } from '../data/services';
+---
+
+<section id="servicios" class="section-pad" style="background-color: #ffffff;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <span
+        class="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
+        style="color: #067538;"
+      >
+        ¿Qué hacemos?
+      </span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
+        Nuestros Servicios
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Artesanía y tecnología de la mano. No hay reto que no podamos afrontar — trabajamos
+        con cualquier presupuesto y en cualquier lugar.
+      </p>
+      <div class="mt-5 w-16 h-1 mx-auto rounded-full" style="background-color: #f5a623;"></div>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map((service) => (
+        <div
+          class={`group relative rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+            service.highlight
+              ? 'text-white shadow-lg'
+              : 'bg-white border border-gray-100 shadow-sm hover:border-green-200'
+          }`}
+          style={service.highlight ? 'background-color: #067538;' : ''}
+        >
+          {service.highlight && (
+            <div
+              class="absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full text-white"
+              style="background-color: #f5a623;"
+            >
+              Destacado
+            </div>
+          )}
+
+          <div class="text-4xl mb-4" aria-hidden="true">{service.icon}</div>
+
+          <h3
+            class={`font-display font-bold text-lg mb-3 ${service.highlight ? 'text-white' : 'text-gray-900'}`}
+          >
+            {service.title}
+          </h3>
+
+          <p class={`text-sm leading-relaxed ${service.highlight ? 'text-white/85' : 'text-gray-600'}`}>
+            {service.description}
+          </p>
+
+          <!-- Bottom accent line -->
+          {!service.highlight && (
+            <div
+              class="absolute bottom-0 left-6 right-6 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              style="background-color: #067538;"
+            ></div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 mb-4 text-lg">
+        ¿Tienes un proyecto en mente? Cuéntanoslo — lo haremos realidad.
+      </p>
+      <a
+        href="#contacto"
+        style="background-color: #067538;"
+        class="inline-flex items-center gap-2 text-white font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity shadow-lg"
+      >
+        Pedir presupuesto gratuito
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
