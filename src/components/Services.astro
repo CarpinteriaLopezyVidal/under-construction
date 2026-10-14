@@ -1,86 +1,123 @@
 ---
 import { services } from '../data/services';
+
+const icons: Record<string, string> = {
+  cocinas: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18M5 6h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zm4 8v2m6-2v2" /></svg>`,
+  cnc: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83M12 9a3 3 0 100 6 3 3 0 000-6z" /></svg>`,
+  vestidores: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4V4zm8 0v16M8 12h.01M16 12h.01" /></svg>`,
+  revestimientos: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5h2v14H4zm5 0h2v14H9zm5 0h2v14h-2zm5 0h2v14h-2z" /></svg>`,
+  mobiliario: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M5 10V6a1 1 0 011-1h12a1 1 0 011 1v4M4 10v9m16-9v9M8 14h8" /></svg>`,
+  viviendas: `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10" /></svg>`,
+};
 ---
 
-<section id="servicios" class="section-pad" style="background-color: #ffffff;">
+<section id="servicios" class="section-pad bg-[#FAF7F2]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Section header -->
-    <div class="text-center mb-14">
-      <span
-        class="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
-        style="color: #067538;"
-      >
-        ¿Qué hacemos?
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#8C532B] mb-3">
+        Especialidades del Taller
       </span>
-      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-        Nuestros Servicios
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-stone-900 tracking-tight mb-5">
+        Servicios de Ebanistería y Fabricación a Medida
       </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Artesanía y tecnología de la mano. No hay reto que no podamos afrontar — trabajamos
-        con cualquier presupuesto y en cualquier lugar.
+      <p class="text-base sm:text-lg text-stone-600 leading-relaxed font-light">
+        Combinamos más de 30 años de saber hacer artesanal con la tecnología computarizada de vanguardia para dar solución a cualquier proyecto, sin intermediarios.
       </p>
-      <div class="mt-5 w-16 h-1 mx-auto rounded-full" style="background-color: #f5a623;"></div>
+      <div class="mt-6 w-20 h-1 mx-auto rounded-full bg-gradient-to-r from-[#C28E58] to-[#8C532B]"></div>
     </div>
 
-    <!-- Services grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
       {services.map((service) => (
-        <div
-          class={`group relative rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
-            service.highlight
-              ? 'text-white shadow-lg'
-              : 'bg-white border border-gray-100 shadow-sm hover:border-green-200'
-          }`}
-          style={service.highlight ? 'background-color: #067538;' : ''}
+        <article
+          class="group relative bg-white rounded-3xl p-8 border border-stone-200/80 shadow-sm hover:shadow-xl hover:border-[#C28E58]/60 transition-all duration-300 flex flex-col justify-between"
         >
-          {service.highlight && (
-            <div
-              class="absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full text-white"
-              style="background-color: #f5a623;"
-            >
-              Destacado
+          <!-- Top Tag & Icon -->
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div
+                class="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-stone-200 flex items-center justify-center text-[#8C532B] group-hover:bg-[#8C532B] group-hover:text-white group-hover:border-[#8C532B] transition-colors duration-300 shadow-sm"
+              >
+                <Fragment set:html={icons[service.id] || icons.cocinas} />
+              </div>
+
+              <span class="text-xs font-semibold uppercase tracking-wider text-[#C28E58] bg-[#FAF7F2] border border-[#C28E58]/20 px-3 py-1 rounded-full">
+                {service.category}
+              </span>
             </div>
-          )}
 
-          <div class="text-4xl mb-4" aria-hidden="true">{service.icon}</div>
+            <!-- Title -->
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-stone-900 mb-3 group-hover:text-[#8C532B] transition-colors">
+              {service.title}
+            </h3>
 
-          <h3
-            class={`font-display font-bold text-lg mb-3 ${service.highlight ? 'text-white' : 'text-gray-900'}`}
-          >
-            {service.title}
-          </h3>
+            <!-- Description -->
+            <p class="text-stone-600 text-sm leading-relaxed mb-6">
+              {service.description}
+            </p>
 
-          <p class={`text-sm leading-relaxed ${service.highlight ? 'text-white/85' : 'text-gray-600'}`}>
-            {service.description}
-          </p>
+            <!-- Feature Bullet Points -->
+            <ul class="space-y-2 mb-8 pt-4 border-t border-stone-100">
+              {service.features.map((feature) => (
+                <li class="flex items-start gap-2.5 text-xs text-stone-700">
+                  <svg class="w-4 h-4 text-[#C28E58] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <!-- Bottom accent line -->
-          {!service.highlight && (
-            <div
-              class="absolute bottom-0 left-6 right-6 h-0.5 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-              style="background-color: #067538;"
-            ></div>
-          )}
-        </div>
+          <!-- Bottom Action -->
+          <div class="pt-2">
+            <a
+              href="#contacto"
+              class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8C532B] group-hover:text-[#C28E58] transition-colors"
+            >
+              <span>Consultar este proyecto</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </article>
       ))}
     </div>
 
-    <!-- Bottom CTA -->
-    <div class="text-center mt-12">
-      <p class="text-gray-600 mb-4 text-lg">
-        ¿Tienes un proyecto en mente? Cuéntanoslo — lo haremos realidad.
-      </p>
-      <a
-        href="#contacto"
-        style="background-color: #067538;"
-        class="inline-flex items-center gap-2 text-white font-semibold px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity shadow-lg"
-      >
-        Pedir presupuesto gratuito
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
+    <!-- Bottom Banner -->
+    <div class="mt-16 bg-stone-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-stone-800 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="max-w-2xl text-center lg:text-left">
+        <span class="text-[#C28E58] text-xs font-bold tracking-widest uppercase mb-2 block">
+          Sin intermediarios · Presupuestos sin compromiso
+        </span>
+        <h3 class="font-display font-bold text-2xl sm:text-3xl text-white mb-2">
+          ¿Tienes planos, bocetos o una idea para tu espacio?
+        </h3>
+        <p class="text-stone-400 text-sm sm:text-base">
+          Nos desplazamos a tomar medidas exactas o presupuestamos directamente a partir de tus planos arquitectónicos.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto flex-shrink-0">
+        <a
+          href="#contacto"
+          class="inline-flex items-center justify-center gap-2 bg-[#C28E58] hover:bg-[#b07e4a] text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-all shadow-md"
+        >
+          Pedir Presupuesto Detallado
+        </a>
+        <a
+          href="https://wa.me/34649669311?text=Hola%2C%20tengo%20un%20proyecto%20de%20madera%20y%20me%20gustar%C3%ADa%20consultar%20precio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-200 font-semibold px-6 py-3.5 rounded-xl text-sm transition-all border border-stone-700"
+        >
+          Preguntar por WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 </section>
+

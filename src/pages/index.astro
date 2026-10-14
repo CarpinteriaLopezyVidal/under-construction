@@ -3,9 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
 import Gallery from '../components/Gallery.astro';
-import Reviews from '../components/Reviews.astro';
 import InstagramEmbed from '../components/InstagramEmbed.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import Footer from '../components/Footer.astro';
@@ -16,11 +18,14 @@ import Footer from '../components/Footer.astro';
   <main id="main-content">
     <Hero />
     <Services />
+    <Process />
     <Gallery />
-    <Reviews />
     <InstagramEmbed />
+    <Reviews />
+    <FAQ />
     <ContactForm />
   </main>
   <Footer />
   <WhatsAppButton />
 </BaseLayout>
+

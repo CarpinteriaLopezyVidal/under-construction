@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* === Color Palette derived from #067538 === */
-  --color-brand: #067538;
-  --color-brand-dark: #044d25;
-  --color-brand-light: #09a64f;
-  --color-accent: #f5a623;
-  --color-surface: #f4f8f5;
-  --color-surface-dark: #e8f2ec;
-  --color-neutral: #1a1a1a;
-  --color-neutral-light: #4a4a4a;
+  /* === Artisan Woodcraft Palette === */
+  --color-brand: #8C532B;          /* Warm artisanal walnut / cognac */
+  --color-brand-dark: #1C1917;     /* Stone 900 / Deep obsidian */
+  --color-brand-light: #B07A43;    /* Golden oak / Honey wood */
+  --color-accent: #C28E58;         /* Warm amber / Brass */
+  --color-accent-light: #DFB27C;   /* Pale honey */
+  --color-surface: #FAF7F2;        /* Warm organic linen / Studio off-white */
+  --color-surface-dark: #F3EFE6;   /* Soft sand */
+  --color-neutral: #1C1917;        /* Charcoal text */
+  --color-neutral-muted: #78716C;  /* Warm stone gray */
   --color-whatsapp: #25D366;
 
   /* === Fonts === */
@@ -20,35 +21,59 @@
 /* === Base Styles === */
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color: var(--color-neutral);
+  background-color: #FAF7F2;
 }
 
 body {
-  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #FAF7F2;
   color: var(--color-neutral);
-  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* === Section padding utility === */
+/* === Section Padding Utility === */
 .section-pad {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 @media (max-width: 768px) {
   .section-pad {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 }
 
-/* === Scrollbar styling === */
+/* === Wood Grain Subtle Pattern Utility === */
+.wood-pattern-dark {
+  background-color: #171412;
+  background-image: radial-gradient(#29231f 1px, transparent 1px), radial-gradient(#29231f 1px, #171412 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* === Scrollbar Styling === */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: #FAF7F2;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand);
-  border-radius: 4px;
+  background: #C28E58;
+  border-radius: 9999px;
+  border: 2px solid #FAF7F2;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: #8C532B;
+}
+
+/* === Transitions & Micro-interactions === */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+

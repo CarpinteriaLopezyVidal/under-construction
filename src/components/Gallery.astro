@@ -1,125 +1,337 @@
 ---
-import { getImage } from 'astro:assets';
-import { glob } from 'astro/loaders';
+interface Project {
+  id: string;
+  title: string;
+  category: 'cocinas' | 'vestidores' | 'cnc' | 'mesas' | 'arquitectura';
+  categoryLabel: string;
+  materials: string;
+  location: string;
+  src: string;
+  alt: string;
+}
 
-// Statically list gallery images available in src/assets/gallery
-// Add more entries here as new images are added to the folder
-const galleryImages = [
-  { src: '/gallery/1.jpg', alt: 'Trabajo de carpintería artesanal en madera' },
-  { src: '/gallery/2.jpg', alt: 'Proyecto de carpintería personalizado' },
-  { src: '/gallery/3.jpg', alt: 'Acabados en madera de alta calidad' },
-  { src: '/gallery/4.jpg', alt: 'Instalación de carpintería a medida' },
-  { src: '/gallery/slide-one.jpg', alt: 'Carpintería artesanal López y Vidal' },
-  { src: '/gallery/slide-two.jpg', alt: 'Proyectos de madera exclusivos' },
+const projects: Project[] = [
+  {
+    id: 'cocina-roble',
+    title: 'Cocina Alistonada en Roble y Mármol',
+    category: 'cocinas',
+    categoryLabel: 'Cocinas de Diseño',
+    materials: 'Roble macizo europeo, mármol calacatta, herrajes Blum',
+    location: 'Alicante',
+    src: '/gallery/cocina-roble-lujo.jpg',
+    alt: 'Cocina a medida de lujo en roble natural alistonado con isla central',
+  },
+  {
+    id: 'vestidor-nogal',
+    title: 'Vestidor Exclusivo en Nogal Americano',
+    category: 'vestidores',
+    categoryLabel: 'Vestidores & Armarios',
+    materials: 'Nogal macizo, herrajes de bronce, vitrinas y LED integrado',
+    location: 'Murcia',
+    src: '/gallery/vestidor-nogal-medida.jpg',
+    alt: 'Vestidor a medida en madera noble de nogal con iluminación oculta',
+  },
+  {
+    id: 'fresado-cnc',
+    title: 'Celosía Tridimensional en Corte CNC',
+    category: 'cnc',
+    categoryLabel: 'Mecanizado CNC',
+    materials: 'Roble seleccionado, fresado 3D 5 ejes, acabado mate',
+    location: 'Pinoso (Taller)',
+    src: '/gallery/fresado-cnc-madera.jpg',
+    alt: 'Corte y fresado CNC de panel decorativo geométrico en madera maciza',
+  },
+  {
+    id: 'mesa-palilleria',
+    title: 'Mesa Live-Edge & Palillería Acústica',
+    category: 'mesas',
+    categoryLabel: 'Mesas & Mobiliario',
+    materials: 'Roble macizo cantos vivos, revestimiento acústico fonoabsorbente',
+    location: 'Valencia',
+    src: '/gallery/mesa-comedor-palilleria.jpg',
+    alt: 'Mesa de comedor live-edge con pared de palillería de roble',
+  },
+  {
+    id: 'ebanisteria-manual',
+    title: 'Cepillado y Ajuste Artesanal en Banco',
+    category: 'arquitectura',
+    categoryLabel: 'Artesanía & Taller',
+    materials: 'Nogal español seleccionado, cepillado manual tradicional',
+    location: 'Pinoso (Taller)',
+    src: '/gallery/hero-craft.jpg',
+    alt: 'Maestro artesano ebanista trabajando la madera con cepillo de mano',
+  },
+  {
+    id: 'carpinteria-integral',
+    title: 'Vivienda Integral con Vigas Vistas',
+    category: 'arquitectura',
+    categoryLabel: 'Arquitectura Interior',
+    materials: 'Vigas de abeto laminado, tarima maciza, puertas enrasadas',
+    location: 'Madrid',
+    src: '/gallery/slide-one.jpg',
+    alt: 'Estructuras y carpintería integral en madera para vivienda unifamiliar',
+  },
+];
+
+const categories = [
+  { key: 'all', label: 'Todos los Proyectos' },
+  { key: 'cocinas', label: 'Cocinas' },
+  { key: 'vestidores', label: 'Vestidores' },
+  { key: 'cnc', label: 'Corte CNC' },
+  { key: 'mesas', label: 'Mesas & Palillería' },
+  { key: 'arquitectura', label: 'Arquitectura' },
 ];
 ---
 
-<section id="galeria" class="section-pad" style="background-color: #f4f8f5;">
+<section id="galeria" class="section-pad bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Section header -->
-    <div class="text-center mb-12">
-      <span
-        class="inline-block text-sm font-semibold uppercase tracking-widest mb-3"
-        style="color: #067538;"
-      >
-        Portfolio
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#8C532B] mb-3">
+        Portfolio de Obras
       </span>
-      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-        Nuestros Trabajos
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-stone-900 tracking-tight mb-5">
+        Proyectos Realizados
       </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Cada pieza cuenta una historia. Así es como transformamos la madera en arte funcional.
+      <p class="text-base sm:text-lg text-stone-600 font-light leading-relaxed">
+        Cada encargo es una pieza irrepetible. Conoce una selección de trabajos fabricados íntegramente en nuestras instalaciones.
       </p>
-      <div class="mt-5 w-16 h-1 mx-auto rounded-full" style="background-color: #f5a623;"></div>
+      <div class="mt-6 w-20 h-1 mx-auto rounded-full bg-gradient-to-r from-[#C28E58] to-[#8C532B]"></div>
     </div>
 
-    <!-- Masonry gallery grid -->
-    <div class="gallery-grid">
-      {galleryImages.map((image, index) => (
-        <a
-          href={image.src}
-          class="gallery-item group block overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
-          data-glightbox={`gallery-${index}`}
-          data-title={image.alt}
-          aria-label={`Ver imagen: ${image.alt}`}
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12" id="gallery-filters" role="tablist">
+      {categories.map((cat, idx) => (
+        <button
+          type="button"
+          data-filter={cat.key}
+          class={`filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+            idx === 0
+              ? 'bg-[#8C532B] text-white shadow-md'
+              : 'bg-[#FAF7F2] text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+          }`}
+          role="tab"
+          aria-selected={idx === 0 ? "true" : "false"}
         >
-          <div class="relative overflow-hidden aspect-auto">
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              decoding="async"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <!-- Overlay on hover -->
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" style="background-color: rgba(6, 117, 56, 0.6);">
-              <div class="text-white text-center p-4">
-                <svg class="w-10 h-10 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-                </svg>
-                <p class="text-sm font-medium">{image.alt}</p>
-              </div>
-            </div>
-          </div>
-        </a>
+          {cat.label}
+        </button>
       ))}
     </div>
 
-    <!-- Add more images CTA -->
-    <div class="text-center mt-10">
-      <p class="text-gray-500 text-sm mb-4">
-        ¿Quieres ver más proyectos? Contáctanos para un portfolio completo.
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-items">
+      {projects.map((project) => (
+        <article
+          class="gallery-card group relative bg-[#FAF7F2] rounded-3xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col"
+          data-category={project.category}
+          data-title={project.title}
+          data-materials={project.materials}
+          data-src={project.src}
+          data-alt={project.alt}
+          data-location={project.location}
+        >
+          <!-- Image Wrapper with 4:3 Aspect Ratio -->
+          <div class="relative aspect-[4/3] overflow-hidden bg-stone-900">
+            <img
+              src={project.src}
+              alt={project.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+
+            <!-- Subtle hover overlay -->
+            <div class="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="inline-flex items-center gap-2 bg-white/95 text-stone-900 text-xs font-bold px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                <svg class="w-4 h-4 text-[#8C532B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+                Ver en detalle
+              </span>
+            </div>
+
+            <!-- Category badge over image -->
+            <div class="absolute top-4 left-4 z-10">
+              <span class="bg-stone-900/80 backdrop-blur-md text-[#DFB27C] text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full border border-stone-700/60 shadow-sm">
+                {project.categoryLabel}
+              </span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                <span class="flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5 text-[#C28E58]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  {project.location}
+                </span>
+                <span class="text-[#8C532B] font-medium">Fabricación a medida</span>
+              </div>
+
+              <h3 class="font-display font-bold text-lg sm:text-xl text-stone-900 group-hover:text-[#8C532B] transition-colors mb-2">
+                {project.title}
+              </h3>
+
+              <p class="text-xs text-stone-600 line-clamp-2">
+                <strong>Materiales:</strong> {project.materials}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-stone-200/80 flex items-center justify-between text-xs text-[#8C532B] font-semibold">
+              <span>Explorar proyecto</span>
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom Portfolio CTA -->
+    <div class="mt-14 text-center">
+      <p class="text-stone-600 text-sm mb-4">
+        ¿Quieres proyectar algo similar o tienes una idea totalmente diferente?
       </p>
       <a
         href="#contacto"
-        class="inline-flex items-center gap-2 border-2 font-semibold px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
-        style="border-color: #067538; color: #067538;"
+        class="inline-flex items-center gap-2.5 bg-stone-900 hover:bg-stone-800 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all text-sm"
       >
-        Ver más trabajos
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        <span>Solicitar Cotización de Proyecto</span>
+        <svg class="w-4 h-4 text-[#C28E58]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </a>
     </div>
+
   </div>
 </section>
 
-<!-- GLightbox CSS + JS from CDN -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<!-- Lightbox Modal (Built-in, zero external dependencies) -->
+<dialog
+  id="lightbox-modal"
+  class="fixed inset-0 z-[100] m-auto w-full h-full max-w-full max-h-full bg-stone-950/95 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center outline-none border-0 hidden"
+  aria-modal="true"
+  role="dialog"
+>
+  <div class="relative max-w-5xl w-full bg-stone-900 rounded-3xl overflow-hidden border border-stone-800 shadow-2xl flex flex-col">
+    <!-- Close button -->
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-stone-950/80 text-white hover:text-[#C28E58] flex items-center justify-center border border-stone-700/80 transition-colors"
+      aria-label="Cerrar visor"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Image Container -->
+    <div class="relative max-h-[70vh] bg-stone-950 flex items-center justify-center overflow-hidden">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[70vh] w-auto max-w-full object-contain mx-auto"
+      />
+    </div>
+
+    <!-- Metadata details footer -->
+    <div class="p-6 bg-stone-900 text-white border-t border-stone-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h4 id="lightbox-title" class="font-display font-bold text-xl text-white"></h4>
+        <p id="lightbox-materials" class="text-xs sm:text-sm text-stone-400 mt-1"></p>
+      </div>
+      <a
+        id="lightbox-cta"
+        href="#contacto"
+        class="inline-flex items-center justify-center gap-2 bg-[#C28E58] text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-[#b07e4a] transition-colors flex-shrink-0"
+      >
+        Pedir Proyecto Parecido
+      </a>
+    </div>
+  </div>
+</dialog>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // @ts-ignore
-    if (typeof GLightbox !== 'undefined') {
-      // @ts-ignore
-      const lightbox = GLightbox({
-        selector: '.gallery-item',
-        touchNavigation: true,
-        loop: true,
-        autoplayVideos: false,
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.gallery-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update button active state
+      filterButtons.forEach((b) => {
+        b.classList.remove('bg-[#8C532B]', 'text-white', 'shadow-md');
+        b.classList.add('bg-[#FAF7F2]', 'text-stone-700');
+        b.setAttribute('aria-selected', 'false');
       });
+      btn.classList.add('bg-[#8C532B]', 'text-white', 'shadow-md');
+      btn.classList.remove('bg-[#FAF7F2]', 'text-stone-700');
+      btn.setAttribute('aria-selected', 'true');
+
+      // Show/hide cards
+      cards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          card.classList.add('animate-fadeIn');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox functionality
+  const modal = document.getElementById('lightbox-modal') as HTMLDialogElement | null;
+  const closeBtn = document.getElementById('lightbox-close');
+  const modalImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  const modalTitle = document.getElementById('lightbox-title');
+  const modalMaterials = document.getElementById('lightbox-materials');
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const src = card.getAttribute('data-src') || '';
+      const alt = card.getAttribute('data-alt') || '';
+      const title = card.getAttribute('data-title') || '';
+      const materials = card.getAttribute('data-materials') || '';
+      const location = card.getAttribute('data-location') || '';
+
+      if (modal && modalImg && modalTitle && modalMaterials) {
+        modalImg.src = src;
+        modalImg.alt = alt;
+        modalTitle.textContent = title;
+        modalMaterials.textContent = `📍 ${location} · Materiales: ${materials}`;
+        modal.classList.remove('hidden');
+        modal.showModal?.();
+      }
+    });
+  });
+
+  const closeModal = () => {
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.close?.();
+    }
+  };
+
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
     }
   });
 </script>
 
-<style>
-  .gallery-grid {
-    columns: 1;
-    gap: 1rem;
-  }
-  .gallery-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-    display: block;
-  }
-  @media (min-width: 640px) {
-    .gallery-grid { columns: 2; }
-  }
-  @media (min-width: 1024px) {
-    .gallery-grid { columns: 3; }
-  }
-</style>

@@ -9,25 +9,41 @@ interface Props {
 }
 
 const {
-  title = 'Carpintería López y Vidal | Carpintería en Pinoso, Alicante',
-  description = 'Carpintería artesanal e industrial en Pinoso, Alicante. Trabajos en madera, CNC, cocinas a medida, proyectos personalizados y viviendas completas. Servicio en toda España y extranjero.',
-  ogImage = '/og-image.jpg',
+  title = 'Carpintería López y Vidal | Ebanistería, Cocinas a Medida y CNC en Alicante',
+  description = 'Taller artesanal de carpintería y ebanistería en Pinoso, Alicante. Especialistas en cocinas de diseño, mobiliario a medida, precisión CNC y proyectos integrales para toda España.',
+  ogImage = '/gallery/cocina-roble-lujo.jpg',
   canonical = Astro.url.href,
 } = Astro.props;
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "HomeAndConstructionBusiness",
   "@id": "https://www.carpinterialopezyvidal.com",
   "name": "Carpintería López y Vidal",
+  "legalName": "Carpintería López y Vidal",
   "description": description,
   "url": "https://www.carpinterialopezyvidal.com",
   "telephone": "+34649669311",
   "email": "web@carpinterialopezyvidal.com",
-  "image": "https://www.carpinterialopezyvidal.com/og-image.jpg",
+  "image": `https://www.carpinterialopezyvidal.com${ogImage}`,
+  "priceRange": "€€ - €€€€",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "09:00",
+      "closes": "13:30"
+    }
+  ],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Pinoso",
+    "streetAddress": "Polígono Industrial / Pinoso",
     "addressLocality": "Pinoso",
     "addressRegion": "Alicante",
     "postalCode": "03650",
@@ -39,19 +55,27 @@ const structuredData = {
     "longitude": -1.0339
   },
   "areaServed": [
-    { "@type": "Country", "name": "España" },
-    { "@type": "AdministrativeArea", "name": "Europa" }
+    { "@type": "AdministrativeArea", "name": "Alicante" },
+    { "@type": "AdministrativeArea", "name": "Murcia" },
+    { "@type": "AdministrativeArea", "name": "Valencia" },
+    { "@type": "AdministrativeArea", "name": "Madrid" },
+    { "@type": "Country", "name": "España" }
   ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "28"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Servicios de Carpintería",
+    "name": "Servicios de Carpintería y Ebanistería",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carpintería artesanal en madera" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trabajos de CNC en madera" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Proyectos personalizados" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cocinas a medida" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Viviendas completas en madera" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transporte e instalación" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cocinas de diseño a medida" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fresado y corte CNC de precisión" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Armarios empotrados y vestidores" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carpintería artesanal en madera maciza" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Viviendas completas y proyectos de arquitectura" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobiliario exclusivo y mesas de autor" } }
     ]
   },
   "sameAs": [
@@ -72,7 +96,7 @@ const structuredData = {
   <meta name="description" content={description} />
   <meta name="author" content="Carpintería López y Vidal" />
   <meta name="robots" content="index, follow" />
-  <meta name="keywords" content="carpintería, madera, CNC, cocinas, muebles, Pinoso, Alicante, proyectos personalizados, viviendas" />
+  <meta name="keywords" content="carpintería Alicante, ebanistería Pinoso, cocinas a medida Alicante, corte CNC madera, armarios a medida, muebles de diseño en madera, carpintero profesional" />
   <link rel="canonical" href={canonical} />
 
   <!-- Open Graph -->
@@ -93,20 +117,18 @@ const structuredData = {
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-  <!-- Google Fonts — preconnect then load -->
+  <!-- Google Fonts — preconnect then load Inter & Playfair Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&display=swap"
   />
-
-  <!-- Global Styles are injected by Astro via the import above -->
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
-<body>
+<body class="bg-[#FAF7F2] text-stone-900 selection:bg-[#C28E58] selection:text-white">
   <slot />
 </body>
 </html>
