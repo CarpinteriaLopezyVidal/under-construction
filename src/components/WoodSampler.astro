@@ -1,0 +1,161 @@
+---
+interface WoodMaterial {
+  id: string;
+  name: string;
+  origin: string;
+  tone: string;
+  hardness: string;
+  bestFor: string;
+  description: string;
+  image: string;
+  tag: string;
+}
+
+const woods: WoodMaterial[] = [
+  {
+    id: "roble-europeo",
+    name: "Roble Europeo Selección",
+    origin: "Bosques Sostenibles (FSC / PEFC)",
+    tone: "Miel natural cálido con veta marcada",
+    hardness: "Muy Alta (3.8 kg/mm² Brinell)",
+    bestFor: "Cocinas de alta gama, mesas macizas y suelos",
+    description: "La madera reina de la ebanistería europea. Ofrece una durabilidad excepcional y una veta abierta que respira calidez, tratada con aceites vegetales mates sin compuestos volátiles.",
+    image: "/materials/roble-europeo.jpg",
+    tag: "Clásico Atemporal"
+  },
+  {
+    id: "nogal-americano",
+    name: "Nogal Americano (Black Walnut)",
+    origin: "Tala Controlada América del Norte",
+    tone: "Chocolate profundo y matices tabaco",
+    hardness: "Alta (3.2 kg/mm² Brinell)",
+    bestFor: "Vestidores a medida, librerías y panelados de autor",
+    description: "Símbolo de distinción y elegancia discreta. Su veta ondulada y tonalidades oscuras convierten cualquier mueble en una pieza escultórica que gana belleza con el paso de los años.",
+    image: "/materials/nogal-americano.jpg",
+    tag: "Máxima Exclusividad"
+  },
+  {
+    id: "palilleria-acustica",
+    name: "Palillería & Revestimientos Acústicos",
+    origin: "Roble / Fresno sobre fieltro reciclado",
+    tone: "Listones geométricos con fondo antracita",
+    hardness: "Resistencia acústica clase A (NRC 0.85)",
+    bestFor: "Salones contemporáneos, cabeceros y despachos",
+    description: "Diseño fonoabsorbente de vanguardia arquitectónica. Reduce la reverberación del sonido al tiempo que aporta una tridimensionalidad textil y geométrica de impacto visual.",
+    image: "/materials/palilleria-acustica.jpg",
+    tag: "Tendencia Arquitectura"
+  }
+];
+---
+
+<section id="maderas" class="section-pad bg-[#FAF7F2] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#9E6B38] bg-[#EFE7DC] px-4 py-1.5 rounded-full mb-3">
+        Muestrario de Materiales Nobles
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight mb-4">
+        Maderas Vivas de Tala Sostenible
+      </h2>
+      <p class="text-stone-600 text-base sm:text-lg">
+        Cada tronco se selecciona en origen por su veta, densidad y estabilidad. En nuestro taller de Pinoso combinamos el respeto por la fibra natural con acabados protectores ecológicos.
+      </p>
+      <div class="w-16 h-1 bg-[#C28E58] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Wood Sampler Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {woods.map((wood) => (
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-200/80 flex flex-col group">
+          
+          <!-- Sample image swatch -->
+          <div class="relative h-64 overflow-hidden bg-stone-100">
+            <img 
+              src={wood.image} 
+              alt={wood.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute top-4 left-4 bg-stone-900/85 backdrop-blur-md text-amber-300 text-xs font-semibold px-3 py-1 rounded-full border border-stone-700">
+              {wood.tag}
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-xs uppercase tracking-wider text-amber-200/90 font-medium block">
+                {wood.origin}
+              </span>
+              <h3 class="text-xl font-serif font-bold text-white drop-shadow-sm">
+                {wood.name}
+              </h3>
+            </div>
+          </div>
+
+          <!-- Wood Specs -->
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <p class="text-stone-600 text-sm leading-relaxed">
+              {wood.description}
+            </p>
+
+            <div class="space-y-2.5 pt-3 border-t border-stone-100 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-stone-500 font-medium">Tono & Veta:</span>
+                <span class="text-stone-800 font-semibold text-right">{wood.tone}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-stone-500 font-medium">Dureza / Resistencia:</span>
+                <span class="text-[#9E6B38] font-bold text-right">{wood.hardness}</span>
+              </div>
+              <div class="flex items-start justify-between gap-2">
+                <span class="text-stone-500 font-medium flex-shrink-0">Aplicación idónea:</span>
+                <span class="text-stone-800 font-semibold text-right">{wood.bestFor}</span>
+              </div>
+            </div>
+
+            <!-- Action -->
+            <div class="pt-4">
+              <a 
+                href={`https://wa.me/34649669311?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20o%20muestra%20f%C3%ADsica%20de%20${encodeURIComponent(wood.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-stone-800 bg-stone-100 hover:bg-[#C28E58] hover:text-white transition-colors duration-200"
+              >
+                <span>Pedir Muestra Física en Mano</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Eco banner bottom -->
+    <div class="mt-12 bg-white rounded-2xl p-6 sm:p-8 border border-stone-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 border border-emerald-200/60 text-xl font-bold">
+          🌱
+        </div>
+        <div>
+          <h4 class="font-serif font-bold text-stone-900 text-lg">Compromiso Taller 100% Sostenible</h4>
+          <p class="text-stone-600 text-xs sm:text-sm mt-0.5">
+            Maderas con certificación PEFC/FSC, acabados con barnices y lasures al agua sin COVs, y reutilización del serrín para biomasa.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <a 
+          href="#contacto" 
+          class="px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs sm:text-sm font-semibold transition-colors"
+        >
+          Consultar Otras Especies
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

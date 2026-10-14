@@ -1,0 +1,164 @@
+---
+// Interactive Project Estimator Component
+---
+
+<section id="estimador" class="section-pad bg-white relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Title -->
+    <div class="text-center mb-12">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#9E6B38] bg-[#FAF7F2] px-4 py-1.5 rounded-full mb-3 border border-[#E8DFC8]">
+        Configurador Rápido
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mb-3">
+        Configura tu Proyecto en 30 Segundos
+      </h2>
+      <p class="text-stone-600 text-sm sm:text-base max-w-xl mx-auto">
+        Selecciona las características de lo que tienes en mente y recibe una valoración técnica orientativa sin compromiso.
+      </p>
+      <div class="w-16 h-1 bg-[#C28E58] mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Interactive Card -->
+    <div class="bg-[#FAF7F2] border border-stone-200/90 rounded-3xl p-6 sm:p-10 shadow-lg">
+      
+      <!-- Step 1: Project Type -->
+      <div class="mb-8">
+        <label class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">
+          1. ¿Qué tipo de trabajo necesitas?
+        </label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="step-type-group">
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58] active-opt" data-val="Cocina de Diseño a Medida">
+            🍳 Cocina a Medida
+          </button>
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58]" data-val="Vestidor o Armarios a Medida">
+            🚪 Vestidor / Armarios
+          </button>
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58]" data-val="Mecanizado o Corte CNC">
+            ⚙️ Corte & Fresado CNC
+          </button>
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58]" data-val="Palillería o Panelado Acústico">
+            🪵 Palillería & Celosía
+          </button>
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58]" data-val="Mesa o Mueble de Autor">
+            🪑 Mueble / Mesa de Autor
+          </button>
+          <button type="button" class="type-opt p-3.5 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all focus:outline-none focus:ring-2 focus:ring-[#C28E58]" data-val="Proyecto Integral de Vivienda">
+            🏡 Proyecto Integral
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Material -->
+      <div class="mb-8">
+        <label class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">
+          2. ¿Qué material o acabado te gustaría?
+        </label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="step-mat-group">
+          <button type="button" class="mat-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all active-opt" data-val="Roble Europeo Macizo">
+            Roble Europeo
+          </button>
+          <button type="button" class="mat-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all" data-val="Nogal Americano Exclusivo">
+            Nogal Americano
+          </button>
+          <button type="button" class="mat-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all" data-val="Lacado Texturado Mate">
+            Lacado Mate / Color
+          </button>
+          <button type="button" class="mat-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all" data-val="Aún no lo sé, busco asesoramiento">
+            No lo sé, asesoradme
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Readiness -->
+      <div class="mb-8">
+        <label class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">
+          3. ¿Cuál es el estado actual de tu idea?
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="step-state-group">
+          <button type="button" class="state-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all active-opt" data-val="Tengo medidas o planos aproximados">
+            📐 Tengo planos o medidas
+          </button>
+          <button type="button" class="state-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all" data-val="Es una idea inicial, necesito visita">
+            💡 Idea inicial, requiero visita
+          </button>
+          <button type="button" class="state-opt p-3 rounded-xl border border-stone-300 bg-white text-stone-800 text-xs sm:text-sm font-semibold hover:border-[#C28E58] text-center transition-all" data-val="Obra / Reforma en curso urgente">
+            🚨 Obra en curso (urgente)
+          </button>
+        </div>
+      </div>
+
+      <!-- Summary & Direct Send -->
+      <div class="pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs sm:text-sm text-stone-600">
+          <span class="font-bold text-stone-900 block sm:inline">Tu selección:</span>
+          <span id="config-summary" class="font-medium text-[#9E6B38]">
+            Cocina a Medida · Roble Europeo · Tengo planos
+          </span>
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <a 
+            id="btn-send-whatsapp"
+            href="https://wa.me/34649669311?text=Hola%2C%20he%20configurado%20mi%20proyecto%20en%20la%20web%3A%20Cocina%20de%20Dise%C3%B1o%20a%20Medida%20en%20Roble%20Europeo%20Macizo.%20Tengo%20medidas%20o%20planos%20aproximados."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold shadow-md transition-all text-center"
+          >
+            <span>Pedir Valoración por WhatsApp</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .active-opt {
+    border-color: #C28E58 !important;
+    background-color: #FDF9F3 !important;
+    color: #9E6B38 !important;
+    box-shadow: 0 0 0 2px rgba(194, 142, 88, 0.25);
+  }
+</style>
+
+<script>
+  let selectedType = "Cocina de Diseño a Medida";
+  let selectedMat = "Roble Europeo Macizo";
+  let selectedState = "Tengo planos o medidas aproximadas";
+
+  const summaryEl = document.getElementById('config-summary');
+  const btnWa = document.getElementById('btn-send-whatsapp') as HTMLAnchorElement;
+
+  function updateConfig() {
+    if (summaryEl) {
+      summaryEl.textContent = `${selectedType} · ${selectedMat} · ${selectedState}`;
+    }
+    if (btnWa) {
+      const msg = `Hola López y Vidal, he configurado mi proyecto en su web:\n- Proyecto: ${selectedType}\n- Material: ${selectedMat}\n- Estado: ${selectedState}\n¿Podríais orientarme con el presupuesto?`;
+      btnWa.href = `https://wa.me/34649669311?text=${encodeURIComponent(msg)}`;
+    }
+  }
+
+  function setupButtonGroup(groupSelector: string, onSelect: (val: string) => void) {
+    const buttons = document.querySelectorAll(groupSelector);
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active-opt'));
+        btn.classList.add('active-opt');
+        const val = btn.getAttribute('data-val') || '';
+        onSelect(val);
+        updateConfig();
+      });
+    });
+  }
+
+  setupButtonGroup('.type-opt', val => selectedType = val);
+  setupButtonGroup('.mat-opt', val => selectedMat = val);
+  setupButtonGroup('.state-opt', val => selectedState = val);
+</script>

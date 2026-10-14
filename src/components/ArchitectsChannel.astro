@@ -1,0 +1,117 @@
+---
+interface Advantage {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const advantages: Advantage[] = [
+  {
+    icon: "📐",
+    title: "Interpretación Técnica CAD/BIM",
+    description: "Trabajamos directamente sobre tus planos en DWG, DXF, SketchUp o Revit. Asesoramos en despieces, viabilidad constructiva y herrajes ocultos sin alterar tu concepto estético."
+  },
+  {
+    icon: "⚙️",
+    title: "Mecanizado CNC de 5 Ejes",
+    description: "Cortes tridimensionales, celosías con relieve acústico, uniones invisibles a inglete y panelados de gran formato con tolerancias centesimales y total repetibilidad."
+  },
+  {
+    icon: "🔨",
+    title: "Pre-ensamblaje en Taller Propio",
+    description: "Montamos y ajustamos previamente cada estructura en nuestras instalaciones de Pinoso para asegurar un encaje perfecto y reducir el tiempo de montaje en obra a la mitad."
+  },
+  {
+    icon: "⏱️",
+    title: "Cumplimiento Riguroso de Plazos",
+    description: "Coordinación directa con tu dirección facultativa y el resto de gremios de la obra. Calendario cerrado por contrato y entregas escalonadas según avance de proyecto."
+  }
+];
+---
+
+<section id="arquitectos" class="section-pad bg-stone-900 text-white relative overflow-hidden">
+  <!-- Subtle architectural grid background -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#DFB27C] bg-stone-800/80 border border-stone-700 px-4 py-1.5 rounded-full mb-4">
+        <span>Canal B2B Profesional</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#DFB27C]"></span>
+        <span>Arquitectura & Contract</span>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+        El Partner de Ebanistería y CNC que Resuelve tus Proyectos Más Exigentes
+      </h2>
+      <p class="text-stone-300 text-base sm:text-lg leading-relaxed">
+        Hablamos el mismo idioma técnico. Acompañamos a estudios de arquitectura, diseñadores de interiores y promotoras de alto standing desde el primer boceto hasta la entrega de llaves.
+      </p>
+    </div>
+
+    <!-- 4 B2B Advantages Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      {advantages.map((adv, idx) => (
+        <div class="bg-stone-950/70 border border-stone-800 p-6 rounded-2xl hover:border-[#C28E58]/60 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">
+              {adv.icon}
+            </div>
+            <span class="text-xs text-stone-500 font-mono block mb-1">0{idx + 1} //</span>
+            <h3 class="font-serif text-lg font-bold text-stone-100 mb-2">
+              {adv.title}
+            </h3>
+            <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">
+              {adv.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- B2B Collaboration Card & File Submission -->
+    <div class="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 border border-stone-800 rounded-3xl p-8 sm:p-10 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl text-center lg:text-left">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+          ¿Tienes una memoria de calidades o planos de proyecto?
+        </h3>
+        <p class="text-stone-300 text-sm sm:text-base">
+          Envíanos tu documentación técnica (DWG, PDF, 3D) o solicita una reunión con nuestro equipo de ingeniería técnica en Pinoso o por videollamada. Evaluamos viabilidad y presupuesto en 48h.
+        </p>
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-stone-400 pt-2">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Acuerdo de Confidencialidad (NDA)
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Muestrario físico para tu estudio
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Facturación B2B transparente
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 flex-shrink-0 w-full sm:w-auto">
+        <a 
+          href="https://wa.me/34649669311?text=Hola%2C%20soy%20arquitecto%2Finteriorista%20y%20me%20gustar%C3%ADa%20colaborar%20con%20L%C3%B3pez%20y%20Vidal%20en%20un%20proyecto" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold shadow-lg transition-colors text-center"
+        >
+          <span>Canal WhatsApp Técnico</span>
+        </a>
+        <a 
+          href="#contacto" 
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-600 text-sm font-semibold transition-colors text-center"
+        >
+          <span>Enviar Planos o Consultar</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
